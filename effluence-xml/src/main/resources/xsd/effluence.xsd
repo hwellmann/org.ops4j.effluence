@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+     elementFormDefault="qualified">
+
+    <xs:complexType name="ERoot">
+        <xs:sequence>
+           <xs:element name="object" type="EObject" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="datetime" type="xs:string" />
+    </xs:complexType>
+    
+    <xs:complexType name="EObject">
+        <xs:sequence>
+          <xs:element name="id" type="EIdentity"/>
+          <xs:element name="property" type="EProperty" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="collection" type="ECollection" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="package" type="xs:string"/>        
+    </xs:complexType>
+    
+    <xs:complexType name="EIdentity">
+       <xs:simpleContent>
+         <xs:extension base="xs:long">
+           <xs:attribute name="name" type="xs:string"/>
+         </xs:extension>
+       </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:complexType name="EProperty" mixed="true">
+        <xs:sequence>
+          <xs:element name="id" type="EIdentity"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="package" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:complexType name="ECollection">
+        <xs:sequence>
+          <xs:element name="element" type="EElement" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="EElement">
+        <xs:sequence>
+          <xs:element name="id" type="EIdentity"/>
+        </xs:sequence>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="package" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:element name="hibernate-generic" type="ERoot"/>
+    <xs:element name="object" type="EObject"/>
+</xs:schema>

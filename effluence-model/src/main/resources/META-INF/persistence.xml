@@ -1,0 +1,45 @@
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    
+    <persistence-unit name="effluence">
+        <jta-data-source>jdbc/effluence</jta-data-source>
+    
+        <class>org.ops4j.effluence.model.AbstractContent</class>
+        <class>org.ops4j.effluence.model.AbstractLink</class>
+        <class>org.ops4j.effluence.model.AbstractPersistentObject</class>
+        <class>org.ops4j.effluence.model.Attachment</class>
+        <class>org.ops4j.effluence.model.BlogPost</class>
+        <class>org.ops4j.effluence.model.BodyContent</class>
+        <class>org.ops4j.effluence.model.Comment</class>
+        <class>org.ops4j.effluence.model.ContentPermissionSet</class>
+        <class>org.ops4j.effluence.model.History</class>
+        <class>org.ops4j.effluence.model.Label</class>
+        <class>org.ops4j.effluence.model.Labelling</class>
+        <class>org.ops4j.effluence.model.OutgoingLink</class>
+        <class>org.ops4j.effluence.model.Page</class>
+        <class>org.ops4j.effluence.model.PageTemplate</class>
+        <class>org.ops4j.effluence.model.ReferralLink</class>
+        <class>org.ops4j.effluence.model.Space</class>
+        <class>org.ops4j.effluence.model.SpaceDescription</class>
+        <class>org.ops4j.effluence.model.SpacePermission</class>
+        <class>org.ops4j.effluence.model.TrackbackLink</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema" />
+
+            <property name="openjpa.Log" value="slf4j" />
+
+            <property name="openjpa.RuntimeUnenhancedClasses" value="unsupported" />
+      
+            <property name="openjpa.ConnectionFactoryProperties" value="PrintParameters=true" />
+      
+            <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)" />
+      
+            <property name="openjpa.jdbc.QuerySQLCache" value="false" />
+        </properties>
+
+    </persistence-unit>
+</persistence>
+

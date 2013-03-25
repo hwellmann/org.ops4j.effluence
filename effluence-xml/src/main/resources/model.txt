@@ -1,0 +1,110 @@
+https://confluence.atlassian.com/display/DOC/Confluence+Data+Model
+
+ApplicationImpl
+    Properties  :[description, updatedDate, name, active, type, lowerName, createdDate]
+    Collections :[directoryMappings, attributes]
+Attachment
+    Properties  :[fileSize, content, attachmentVersion, lastModifierName, creationDate, originalVersion, creatorName, fileName, contentType, comment, lastModificationDate]
+    Collections :[imageDetailsDTO]
+BlogPost
+    Properties  :[versionComment, lastModifierName, creationDate, title, originalVersion, creatorName, contentStatus, space, lastModificationDate, version]
+    Collections :[outgoingLinks, trackbackLinks, labellings, referralLinks, historicalVersions, attachments, comments, bodyContents]
+BodyContent
+    Properties  :[bodyType, content, body]
+    Collections :[]
+BucketPropertySetItem
+    Properties  :[dateVal, longVal, booleanVal, intVal, doubleVal, textVal, type, stringVal]
+    Collections :[]
+Comment
+    Properties  :[versionComment, lastModifierName, creationDate, title, originalVersion, creatorName, contentStatus, owner, parent, lastModificationDate, version]
+    Collections :[outgoingLinks, trackbackLinks, children, historicalVersions, bodyContents]
+ConfluenceBandanaRecord
+    Properties  :[value, context, key]
+    Collections :[]
+ContentPermission
+    Properties  :[lastModifierName, creationDate, owningSet, groupName, creatorName, userName, type, lastModificationDate]
+    Collections :[]
+ContentPermissionSet
+    Properties  :[creationDate, owningContent, type, lastModificationDate]
+    Collections :[contentPermissions]
+DefaultHibernateExternalEntity
+    Properties  :[name, type]
+    Collections :[]
+DefaultHibernateGroup
+    Properties  :[name]
+    Collections :[localMembers]
+DefaultHibernateUser
+    Properties  :[created, email, name, fullName, password]
+    Collections :[groups]
+DirectoryImpl
+    Properties  :[lowerImplementationClass, description, updatedDate, name, active, type, lowerName, implementationClass, createdDate]
+    Collections :[allowedOperations, attributes]
+DirectoryMapping
+    Properties  :[application, allowAllToAuthenticate, directory]
+    Collections :[allowedOperations]
+Draft
+    Properties  :[versionComment, lastModifierName, creationDate, title, creatorName, draftSpaceKey, contentStatus, pageId, draftType, pageVersion, lastModificationDate, version]
+    Collections :[bodyContents]
+GlobalDescription
+    Properties  :[versionComment, lastModifierName, creationDate, title, creatorName, contentStatus, lastModificationDate, version]
+    Collections :[attachments]
+HibernateGroupImpl
+    Properties  :[name]
+    Collections :[users]
+HibernateMembership
+    Properties  :[userMember, parentGroup]
+    Collections :[]
+HibernateUserImpl
+    Properties  :[name, passwordHash]
+    Collections :[groups]
+IndexQueueEntry
+    Properties  :[creationDate, handle, type]
+    Collections :[]
+InternalGroup
+    Properties  :[directory, description, updatedDate, name, active, local, type, lowerName, createdDate]
+    Collections :[]
+InternalUser
+    Properties  :[lastName, lowerEmailAddress, updatedDate, emailAddress, lowerName, lowerFirstName, directory, name, active, lowerLastName, lowerDisplayName, firstName, displayName, createdDate]
+    Collections :[]
+Label
+    Properties  :[creationDate, name, owner, lastModificationDate, namespace]
+    Collections :[]
+Labelling
+    Properties  :[content, creationDate, labelableType, label, lastModificationDate, user, labelableId]
+    Collections :[]
+Notification
+    Properties  :[lastModifierName, creationDate, creatorName, page, userName, digest, space, type, lastModificationDate, network]
+    Collections :[]
+OutgoingLink
+    Properties  :[sourceContent, lastModifierName, creationDate, creatorName, destinationSpaceKey, lastModificationDate, destinationPageTitle]
+    Collections :[]
+Page
+    Properties  :[position, versionComment, lastModifierName, creationDate, title, originalVersion, creatorName, contentStatus, parent, space, lastModificationDate, version]
+    Collections :[outgoingLinks, trackbackLinks, labellings, referralLinks, contentPermissionSets, ancestors, children, historicalVersions, attachments, comments, bodyContents]
+PageTemplate
+    Properties  :[bodyType, content, lastModifierName, creationDate, creatorName, originalVersionPageTemplate, description, name, moduleKey, space, lastModificationDate, version, pluginKey]
+    Collections :[]
+PersonalInformation
+    Properties  :[versionComment, lastModifierName, creationDate, title, username, originalVersion, creatorName, contentStatus, lastModificationDate, version]
+    Collections :[outgoingLinks, historicalVersions, attachments, bodyContents]
+ReferralLink
+    Properties  :[sourceContent, lastModifierName, creationDate, creatorName, lastModificationDate, url, viewCount]
+    Collections :[]
+Space
+    Properties  :[spaceStatus, lastModifierName, creationDate, creatorName, description, name, spaceType, lastModificationDate, homePage, key]
+    Collections :[pageTemplates, permissions]
+SpaceDescription
+    Properties  :[versionComment, lastModifierName, creationDate, title, originalVersion, creatorName, contentStatus, space, lastModificationDate, version]
+    Collections :[labellings, historicalVersions, attachments, bodyContents]
+SpacePermission
+    Properties  :[lastModifierName, creationDate, creatorName, userName, group, type, space, lastModificationDate]
+    Collections :[]
+TrackbackLink
+    Properties  :[sourceContent, blogName, lastModifierName, creationDate, title, creatorName, excerpt, lastModificationDate, url, viewCount]
+    Collections :[]
+UserLoginInfo
+    Properties  :[totalFailedLoginCount, previousSuccessfulLoginDate, lastFailedLoginDate, currentFailedLoginCount, userName, lastSuccessfulLoginDate]
+    Collections :[]
+VersionHistory
+    Properties  :[creationDate, buildNumber, versionTag, lastModificationDate, installationDate]
+    Collections :[]
