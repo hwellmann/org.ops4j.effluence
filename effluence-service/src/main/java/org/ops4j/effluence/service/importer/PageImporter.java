@@ -51,6 +51,7 @@ public class PageImporter extends AbstractObjectImporter<Page> {
 
     @Override
     public void importObject(EObject object) {
+        em.clear();
         Page page = new Page();
         long id = object.getId().getValue();
         page.setId(id);

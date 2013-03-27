@@ -25,8 +25,8 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 
 /**
@@ -39,7 +39,7 @@ public class AbstractContent extends AbstractPersistentObject {
     
     private String versionComment;
     
-    @OneToOne
+    @ManyToOne
     private AbstractContent originalVersion;
     
     @Embedded
@@ -52,7 +52,7 @@ public class AbstractContent extends AbstractPersistentObject {
     @OneToMany(mappedBy = "sourceContent")
     private List<OutgoingLink> outgoingLinks;
     
-    @OneToMany
+    @OneToMany(mappedBy = "originalVersion")
     private List<AbstractContent> historicalVersions;
     
     @OneToMany(mappedBy = "sourceContent")
