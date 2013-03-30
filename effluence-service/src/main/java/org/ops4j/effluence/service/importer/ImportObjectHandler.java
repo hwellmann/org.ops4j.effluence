@@ -68,7 +68,7 @@ public class ImportObjectHandler extends ObjectHandler {
         String className = object.getClazz();
         ObjectImporter<? extends AbstractPersistentObject> importer = objectImporterMap.get(className);
         if (importer == null) {
-            log.warn("no import handler for class {}", className);
+            log.debug("no import handler for class {}", className);
             return;
         }
         importer.importObject(object);

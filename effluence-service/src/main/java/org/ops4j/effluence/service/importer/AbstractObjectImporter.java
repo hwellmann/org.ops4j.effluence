@@ -60,6 +60,7 @@ public abstract class AbstractObjectImporter<T extends AbstractPersistentObject>
             collection.add(entity);
         }
     }
+    @SuppressWarnings("unchecked")
     protected <U extends AbstractPersistentObject> U findOrCreateAssociatedObject(EProperty property,
         Class<U> entityClass) {
         String clazz = property.getClazz();
@@ -83,7 +84,6 @@ public abstract class AbstractObjectImporter<T extends AbstractPersistentObject>
             return null;
         }
 
-        @SuppressWarnings("unchecked")
         JAXBElement<EIdentity> idElement = (JAXBElement<EIdentity>) property.getContent().get(0);
         
         EIdentity identity = idElement.getValue();

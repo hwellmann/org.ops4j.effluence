@@ -162,7 +162,7 @@
 # http://openejb.apache.org/containers-and-resources.html
 -->
 
-    <Resource id="jdbc/effluence" type="DataSource">
+    <Resource id="jdbc/effluence_old" type="DataSource">
         JdbcDriver org.postgresql.Driver
         JdbcUrl jdbc:postgresql://localhost/Effluence2
         UserName effluence
@@ -182,7 +182,27 @@
                 removeAbandoned true
                 removeAbandonedTimeout 60
                 logAbandoned true
-                ValidationQuery SELECT 1    </Resource>
+                ValidationQuery SELECT 1    
+    </Resource>
+
+    <Resource id="jdbc/effluenceHsql" type="DataSource">
+        JdbcDriver org.hsqldb.jdbcDriver
+        JdbcUrl jdbc:hsqldb:file:/home/hwellmann/data/hsqldb/effluence
+        UserName sa
+        Password
+        JtaManaged true
+        DataSourceCreator dbcp
+    </Resource>
+
+    <Resource id="jdbc/effluence" type="DataSource">
+        JdbcDriver org.apache.derby.jdbc.EmbeddedDriver
+        JdbcUrl jdbc:derby:/home/hwellmann/data/derby/effluence;create=true
+        JtaManaged true
+        DataSourceCreator dbcp
+    </Resource>
+
+
+
 
     <Resource id="My DataSource" type="DataSource">
         JdbcDriver org.hsqldb.jdbcDriver

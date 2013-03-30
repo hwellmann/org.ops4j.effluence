@@ -1,0 +1,2 @@
+org.ops4j.effluence.parser.confluence4.Confluence4Parser
+org.ops4j.effluence.parser.confluence4.Confluence4XmlReaderFactory

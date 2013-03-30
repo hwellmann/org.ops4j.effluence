@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="effluence.xsl"?>
+<ac:confluence xmlns:ac="http://www.atlassian.com/schema/confluence/4/ac/" xmlns:ri="http://www.atlassian.com/schema/confluence/4/ri/" xmlns="http://www.atlassian.com/schema/confluence/4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.atlassian.com/schema/confluence/4/ac/ confluence.xsd">
+<ac:macro ac:name="toc" />
+<p>See also <ac:link><ri:page ri:content-title="FAQ" ri:space-key="paxexam" /></ac:link> for questions related to Pax Exam 2.x.</p>
+
+<h3>My test blocks or times out. What can I do?</h3>
+
+<p>Make sure that <strong>all</strong> provisioned bundles are ACTIVE and all required services are registered. To do so, change your configuration to <ac:link><ri:page ri:content-title="Diagnosis" /><ac:link-body>enable an OSGI console</ac:link-body></ac:link>. The details of this depend on your OSGi framework.</p>
+
+
+<h3>My test works in the <em>Forked Container</em> but not in the Native Container</h3>
+
+<p>With the Native Container, your tests run in the same VM as the Pax Exam driver. Thus, Pax Exam classes and any other classpath dependencies are visible to the system classloader. The OSGi framework may or may try to limit the scope of the parent classloader of bundle classloaders, but even when it does so, bundles in your system under test may thwart the intention of the framework to isolate itself by directly accessing the system classloader.</p>
+
+<p>There is not much Pax Exam can do about this. See the discussion in PAXEXAM-249.</p>
+
+
+<h3>Why does the Java debugger not stop at a breakpoint I set in my Pax Exam JUnit test?</h3>
+
+<p>When working with the Forked Container, you are dealing with two Java VM processes, one running the test driver, and one running the OSGi framework. The execution flow of your JUnit class is actually split between the two VMs, and the bodies of your test methods are executed on the remote VM.</p>
+
+<p>So you need to enable remote debugging for the spawned VM using a <code>vmOption()</code> in your <code>@Configuration</code> method, e.g.</p>
+
+<ac:macro ac:name="code"><ac:plain-text-body><![CDATA[
+vmOption("-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"),
+systemTimeout(0)
+]]>
+</ac:plain-text-body></ac:macro>
+
+<h3>Why does Pax Exam ignore my logging configuration?</h3>
+
+<p>Pax Exam uses <ac:link><ri:page ri:content-title="Pax Logging" ri:space-key="paxlogging" /></ac:link> by default. If you have your own logging bundles in your system under test, you may not get what you expect. See <ac:link><ri:page ri:content-title="Logging Configuration" /></ac:link> for more details.</p>
+
+<h3>How can I provision bundles directly from my IDE workspace?</h3>
+
+<p>Use the <code>reference:</code> protocol from Pax URL with the class folder of your IDE.</p>
+
+<h3>Why do I get a SecurityException when using Pax Exam with Equinox?</h3>
+
+<p>When using Equinox, make sure you don't have <code>org.osgi:org.osgi.core</code> on your classpath at the same time. The Equinox JAR is signed, and the <code>SecurityException</code> is caused by a class with an unexpected checksum being loaded from some other JAR.</p>
+</ac:confluence>

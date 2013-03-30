@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="effluence.xsl"?>
+<ac:confluence xmlns:ac="http://www.atlassian.com/schema/confluence/4/ac/" xmlns:ri="http://www.atlassian.com/schema/confluence/4/ri/" xmlns="http://www.atlassian.com/schema/confluence/4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.atlassian.com/schema/confluence/4/ac/ confluence.xsd">
+
+<h3>My test works in the <ac:link><ri:page ri:content-title="Forked Container" ri:space-key="paxexam"/></ac:link>    but not in the Native Container</h3>
+
+</ac:confluence>

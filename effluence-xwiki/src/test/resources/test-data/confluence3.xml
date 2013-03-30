@@ -1,0 +1,52 @@
+{excerpt:hidden=true}Painless Integration Testing{excerpt}
+{section}
+{column}
+
+!paxexam:Pax Exam^pax-exam.png|thumbnail,width=200!
+
+h2. In-Container Testing for OSGi, Java EE and CDI
+
+h3. OSGi Testing
+
+
+* Pax Exam lets you take control of the *OSGi framework*, the *test framework* (e.g. JUnit) and your *system under test* at the same time.
+* Pax Exam has a *test driver* and a *test container*. The *driver* launches the OSGi framework and the system under test. It builds on-the-fly bundles from your test cases and injects them into the container. The driver is a plain old Java application and does not itself require an OSGi framework.
+* The *test container* comes in two flavours: The *Native Container* launches an embedded OSGi framework in the test driver VM. With the *Forked Container*, the system under test runs in a separate Java virtual machine under remote control from the test driver. 
+* Test containers support different *strategies* for restarting or reusing the running OSGi framework for each test.
+* With the {{{*}PaxExam{*}}} JUnit runner, you simply need to add some special annotations and a configuration method to a JUnit class to run your OSGi tests. Thanks to this runner, any JUnit integration (e.g. in Eclipse or Maven Surefire) works with Pax Exam out of the box.
+* Pax Exam itself is *distributed as Maven artifacts* and lets you *provision Maven bundles* to your OSGi framework directly from local or remote Maven repositories.
+* Pax Exam supports *all major OSGi frameworks* (Equinox, Felix, Knopflerfish).
+* Read more: [Getting Started with OSGi Tests]
+
+h3. Java EE and CDI Testing
+
+* Pax Exam 3.x generalizes the *in-container testing* approach to cover not only OSGi, but also *Java EE* and *CDI* components and applications.
+* Simply add {{*@RunWith(PaxExam.class)*}} to your JUnit test classes and let Pax Exam launch a full-blown Java EE server or a stand-alone CDI container and execute your tests within the container.
+* In Java EE mode, Pax Exam uses sensible defaults to *build a test WAR on the fly*, based on the classpath. There is no need to explicitly configure this WAR for each test.
+* All classes of a test suite can *share the same setup*. 
+* Pax Exam supports *GlassFish 3.x*, *JBoss AS7*, *Resin 4.x* and *TomEE 1.5.1*.
+* In CDI Java SE mode, Pax Exam supports both *OpenWebBeans* and *Weld*. 
+* Read more: [Getting Started with Java EE Tests] and [Getting Started with CDI Tests]
+
+h3. Unit Test Frameworks
+
+Pax Exam is best used with *JUnit 4*, but also supports *TestNG 6*.
+
+
+{column}
+{column}
+{div:class=links}
+[Download]
+[Documentation]
+[Issue Tracker|http://issues.ops4j.org/jira/browse/PAXEXAM]
+
+{div}
+{column}
+{section}
+{section}
+{column}
+
+h3. Latest News
+{blog-posts:3|labels=+pax-exam-3|spaces=@all}
+{column}
+{section}

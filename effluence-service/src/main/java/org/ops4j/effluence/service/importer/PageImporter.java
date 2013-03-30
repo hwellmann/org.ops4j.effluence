@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -48,6 +49,8 @@ import org.ops4j.effluence.model.TrackbackLink;
 @Stateless
 @Local(ObjectImporter.class)
 public class PageImporter extends AbstractObjectImporter<Page> {
+    
+    private static AtomicInteger count = new AtomicInteger();
 
     @Override
     public void importObject(EObject object) {
@@ -59,6 +62,10 @@ public class PageImporter extends AbstractObjectImporter<Page> {
         setProperties(page, object);
         setCollections(page, object);
         em.merge(page);
+        int numObjects = count.incrementAndGet();
+        if (numObjects % 100 == 0) {
+            log.info("{} pages", numObjects);
+        }
     }
 
     private void setProperties(Page page, EObject object) {

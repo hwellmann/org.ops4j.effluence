@@ -18,6 +18,8 @@
 
 package org.ops4j.effluence.service.importer;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
@@ -34,12 +36,18 @@ import org.ops4j.effluence.model.BodyContent;
 @Local(ObjectImporter.class)
 public class BodyContentImporter extends AbstractObjectImporter<BodyContent> {
 
+    private static AtomicInteger count = new AtomicInteger();
+
     @Override
     public void importObject(EObject object) {
         BodyContent bodyContent = new BodyContent();
         bodyContent.setId(object.getId().getValue());
         setProperties(bodyContent, object);
         em.merge(bodyContent);
+        int numObjects = count.incrementAndGet();
+        if (numObjects % 100 == 0) {
+            log.info("{} bodyContents", numObjects);
+        }
     }
 
     private void setProperties(BodyContent bodyContent, EObject object) {

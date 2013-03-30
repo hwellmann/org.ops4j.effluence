@@ -1,0 +1,29 @@
+<document>
+    <parameter0>
+        <metadata class="linked-hash-map">
+            <entry>
+                <string>syntax</string>
+                <org.xwiki.rendering.syntax.Syntax>
+                    <type>
+                        <name>XWiki</name>
+                        <id>xwiki</id>
+                    </type>
+                    <version>2.1</version>
+                </org.xwiki.rendering.syntax.Syntax>
+            </entry>
+        </metadata>
+    </parameter0>
+    <paragraph parameter0="">
+        <word>One</word>
+        <specialSymbol>.</specialSymbol>
+        <space></space>
+        <word>two</word>
+        <specialSymbol>.</specialSymbol>
+        <newLine></newLine>
+        <macro parameter0="toc" parameter1="" parameter2="" parameter3="true"></macro>
+        <word>three</word>
+        <space></space>
+        <word>four</word>
+        <specialSymbol>.</specialSymbol>
+    </paragraph>
+</document>

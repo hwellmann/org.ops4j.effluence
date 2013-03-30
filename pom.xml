@@ -14,16 +14,18 @@
     <name>OPS4J Effluence Reactor</name>
 
     <properties>
-        <logback.version>1.0.4</logback.version>
+        <logback.version>1.0.9</logback.version>
         <openjpa.version>2.2.1</openjpa.version>
         <pax.exam.version>3.0.1</pax.exam.version>
-        <slf4j.version>1.6.6</slf4j.version>
+        <slf4j.version>1.7.2</slf4j.version>
+        <xwiki.version>4.5.3</xwiki.version>
     </properties>
 
     <modules>
         <module>effluence-xml</module>
         <module>effluence-model</module>
         <module>effluence-service</module>
+        <module>effluence-xwiki</module>
     </modules>
 
     <dependencyManagement>
