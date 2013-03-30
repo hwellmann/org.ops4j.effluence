@@ -127,4 +127,39 @@ public class Confluence4ParserTest {
         checkMarkupConversion("to <ac:link><ri:page ri:content-title=\"Diagnosis\" /><ac:link-body>enable an OSGI console</ac:link-body></ac:link>. The details",
             "to [[enable an OSGI console>>url:Diagnosis]]. The details");
     }
+    
+    @Test
+    public void parseMacroWithPlainTextBody() {
+        checkMarkupConversion("<ac:macro ac:name=\"code\"><ac:plain-text-body><![CDATA[\nreturn true;\n]]></ac:plain-text-body></ac:macro>",
+            "{{code}}\n\nreturn true;\\\\\n{{/code}}");
+    }
+
+    @Test
+    public void parseMacroWithoutBody() {
+        checkMarkupConversion("<ac:macro ac:name=\"toc\" />",
+            "{{toc}}{{/toc}}");
+    }
+
+    @Test
+    public void parseMacroWithRichTextBody() {
+        checkMarkupConversion("<ac:macro ac:name=\"info\"><ac:rich-text-body><p>Do <strong>not</strong> delete!</p></ac:rich-text-body></ac:macro>",
+            "{{info}}\nDo **not** delete!\n{{/info}}");
+    }
+
+    
+    
+    @Test
+    public void parseMacroWithDefaultParameter() {
+        checkMarkupConversion("<ac:macro ac:name=\"code\"><ac:default-parameter>xml</ac:default-parameter><ac:plain-text-body><![CDATA[\n" +
+            "<groupId>org.ops4j.effluence</groupId>\n" +
+            "]]></ac:plain-text-body></ac:macro>",
+            "{{code language=\"xml\"}}\n\n<groupId>org.ops4j.effluence</groupId>\\\\\n{{/code}}");
+    }
+    
+    
+    @Test
+    public void parseMacroWithParameter() {
+        checkMarkupConversion("<ac:macro ac:name='children'><ac:parameter ac:name='depth'>2</ac:parameter></ac:macro>",
+            "{{children depth=\"2\"}}{{/children}}");
+    }
 }

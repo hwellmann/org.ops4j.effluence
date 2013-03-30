@@ -146,8 +146,11 @@ public class Confluence4Parser extends XHTMLParser {
         handlers.put("code", new TeletypeTagHandler());
         
         // Tags with ac: prefix
+        handlers.put("default-parameter", new AcDefaultParameterHandler());
         handlers.put("link", new AcLinkHandler());
         handlers.put("link-body", new AcLinkBodyHandler());
+        handlers.put("macro", new AcMacroHandler(this, xwikiSyntaxPrintRendererFactory));
+        handlers.put("parameter", new AcParameterHandler());
 
         // Tags with ri: prefix
         handlers.put("page", new RiPageHandler());
