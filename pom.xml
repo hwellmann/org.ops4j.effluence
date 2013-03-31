@@ -26,6 +26,7 @@
         <module>effluence-model</module>
         <module>effluence-service</module>
         <module>effluence-xwiki</module>
+        <module>effluence-xar</module>
     </modules>
 
     <dependencyManagement>
@@ -127,4 +128,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>xwiki-releases</id>
+            <url>http://nexus.xwiki.org/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 </project>
