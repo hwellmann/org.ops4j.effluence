@@ -18,29 +18,29 @@
 
 package org.ops4j.effluence.xar.jaxb;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.inject.Inject;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.ops4j.effluence.xar.XarExporter;
-import org.ops4j.pax.exam.junit.PaxExam;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
  * @author Harald Wellmann
  *
  */
-@RunWith(PaxExam.class)
-public class XarExporterTest {
+@XmlType
+@XmlAccessorType(XmlAccessType.FIELD)
+public class FilesDescriptor {
     
-    @Inject
-    private XarExporter exporter;
-    
-    @Test
-    public void exportPaxExamXar() {
-        exporter.exportXar("PAXEXAM3", new File("/tmp/xwiki"));
-    }
+    private List<FileDescriptor> file = new ArrayList<FileDescriptor>();
 
+    
+    /**
+     * @return the file
+     */
+    public List<FileDescriptor> getFile() {
+        return file;
+    }
 }

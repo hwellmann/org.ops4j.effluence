@@ -28,12 +28,14 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.util.List;
+import java.util.regex.Matcher;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import org.apache.commons.io.IOUtils;
 import org.ops4j.effluence.model.BodyContent;
 import org.ops4j.effluence.model.History;
 import org.ops4j.effluence.model.Page;
@@ -45,6 +47,7 @@ import org.ops4j.effluence.xar.annotation.WikiSyntax;
 import org.ops4j.effluence.xar.annotation.Xar;
 import org.ops4j.effluence.xar.jaxb.DocumentDescriptor;
 import org.ops4j.effluence.xar.jaxb.FileDescriptor;
+import org.ops4j.effluence.xar.jaxb.FilesDescriptor;
 import org.ops4j.effluence.xar.jaxb.PackageDescriptor;
 import org.xwiki.rendering.block.XDOM;
 import org.xwiki.rendering.parser.ParseException;
@@ -123,6 +126,7 @@ public class XarExporter {
         doc.setTitle(page.getTitle());
         doc.setComment(page.getVersionComment());
         doc.setMinorEdit(false);
+        doc.setSyntaxId("xwiki/2.1");
         
         List<BodyContent> contents = page.getBodyContents();
         if (contents != null && !contents.isEmpty()) {
@@ -140,13 +144,23 @@ public class XarExporter {
      */
     private String convertContent(String confluenceContent) {
         try {
-            XDOM xdom = parser.parse(new StringReader(confluenceContent));
+            /*
+             * Confluence content is missing a root element. We use a template to add a doctype 
+             * and a root element with the required XML namespaces. 
+             */
+            String template = IOUtils.toString(getClass().getResource("/xml/Confluence4Template.xml"));
+            String content = template.replace("@CONTENT@", confluenceContent);
+
+            // CDATA closing tag is not correctly rendered in Confluence dumps
+            content = content.replaceAll("\\]\\] >", "]]>");
+            
+            XDOM xdom = parser.parse(new StringReader(content));
             assertThat(xdom, is(notNullValue()));
             DefaultWikiPrinter printer = new DefaultWikiPrinter();
             renderer.render(xdom, printer);
             return printer.toString();
         }
-        catch (ParseException e) {
+        catch (ParseException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -169,14 +183,20 @@ public class XarExporter {
         pkg.setAuthor(space.getHistory().getCreatorName());
         pkg.setBackupPack(true);
         pkg.setPreserveVersion(true);
-        
-        List<FileDescriptor> files = pkg.getFile();
-        for (Page page : pages) {
-            String doc = String.format("%s.%s", spaceKey, page.getTitle());
+        pkg.setFiles(new FilesDescriptor());
+        List<FileDescriptor> files = pkg.getFiles().getFile();
+        for (Page page : pages) {            
+            String doc = buildPageTitle(spaceKey, page);
             files.add(new FileDescriptor(doc));
         }
         
         writePackageDescriptor(pkg);
+    }
+
+    private String buildPageTitle(String spaceKey, Page page) {
+        String title = page.getTitle();
+        title = title.replaceAll("\\.", Matcher.quoteReplacement("\\."));
+        return String.format("%s.%s", spaceKey, title);
     }
 
     private void writePackageDescriptor(PackageDescriptor pkg) {

@@ -51,7 +51,7 @@ public class XwikiProducer {
 
     @Produces
     @ApplicationScoped @WikiSyntax("xwiki/2.1")
-    public Parser createXwiki21Renderer(EmbeddableComponentManager componentManager)
+    public BlockRenderer createXwiki21Renderer(EmbeddableComponentManager componentManager)
         throws ComponentLookupException {
         return componentManager.getInstance(BlockRenderer.class, Syntax.XWIKI_2_1.toIdString());
     }

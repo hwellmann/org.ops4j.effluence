@@ -57,10 +57,12 @@ public class PackageDescriptorTest {
         pkg.setAuthor("hwellmann");
         pkg.setBackupPack(true);
         pkg.setPreserveVersion(true);
-        List<FileDescriptor> files = pkg.getFile();
+        FilesDescriptor fileList = new FilesDescriptor();
+        List<FileDescriptor> files = fileList.getFile();
         files.add(new FileDescriptor("MySpace.Page1"));
         files.add(new FileDescriptor("MySpace.Page2"));
         files.add(new FileDescriptor("MySpace.Page3"));
+        pkg.setFiles(fileList);
         
         marshaller.marshal(pkg, System.out);
     }

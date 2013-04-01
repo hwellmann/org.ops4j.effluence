@@ -105,12 +105,6 @@ public class Confluence4ParserTest {
     }
 
     @Test
-    public void parseOptions() {
-        checkFileConversion("ConfigurationOptions.xml",
-            "=== My test works in the [[Forked Container>>url:../paxexam/Forked Container]] but not in the Native Container ===");
-    }
-
-    @Test
     public void parseLink() {
         checkMarkupConversion("<h3>My test works in the <ac:link><ri:page ri:content-title='Forked Container' ri:space-key='paxexam'/></ac:link> but not in the Native Container</h3>",
             "=== My test works in the [[Forked Container>>url:../paxexam/Forked Container]] but not in the Native Container ===");

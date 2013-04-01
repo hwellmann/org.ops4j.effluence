@@ -18,9 +18,6 @@
 
 package org.ops4j.effluence.xar.jaxb;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -36,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "package")
 public class PackageDescriptor {
     
-    private String infos;
+    private String infos = "";
     
     private String name;
     
@@ -52,7 +49,7 @@ public class PackageDescriptor {
 
     private boolean preserveVersion;
     
-    private List<FileDescriptor> file = new ArrayList<FileDescriptor>();
+    private FilesDescriptor files;
 
     
     /**
@@ -182,11 +179,22 @@ public class PackageDescriptor {
         this.preserveVersion = preserveVersion;
     }
 
+
     
     /**
-     * @return the file
+     * @return the files
      */
-    public List<FileDescriptor> getFile() {
-        return file;
+    public FilesDescriptor getFiles() {
+        return files;
     }
+
+
+    
+    /**
+     * @param files the files to set
+     */
+    public void setFiles(FilesDescriptor files) {
+        this.files = files;
+    }
+
 }
