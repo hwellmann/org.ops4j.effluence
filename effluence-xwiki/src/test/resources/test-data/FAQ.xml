@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="effluence.xsl"?>
+<!DOCTYPE ac:confluence SYSTEM "confluence.dtd">
 <ac:confluence xmlns:ac="http://www.atlassian.com/schema/confluence/4/ac/" xmlns:ri="http://www.atlassian.com/schema/confluence/4/ri/" xmlns="http://www.atlassian.com/schema/confluence/4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.atlassian.com/schema/confluence/4/ac/ confluence.xsd">
 <ac:macro ac:name="toc" />
 <p>See also <ac:link><ri:page ri:content-title="FAQ" ri:space-key="paxexam" /></ac:link> for questions related to Pax Exam 2.x.</p>
@@ -16,7 +17,7 @@
 <p>There is not much Pax Exam can do about this. See the discussion in PAXEXAM-249.</p>
 
 
-<h3>Why does the Java debugger not stop at a breakpoint I set in my Pax Exam JUnit test?</h3>
+<h3>Why does the Java debugger not&nbsp;stop at a breakpoint I set in my Pax Exam JUnit test?</h3>
 
 <p>When working with the Forked Container, you are dealing with two Java VM processes, one running the test driver, and one running the OSGi framework. The execution flow of your JUnit class is actually split between the two VMs, and the bodies of your test methods are executed on the remote VM.</p>
 

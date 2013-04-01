@@ -77,7 +77,7 @@ public class Confluence4ParserTest {
 
     private String convertMarkup(String confluenceMarkup) {
         try {
-            String template = IOUtils.toString(getClass().getResource("/test-data/Confluence4Template.xml"));
+            String template = IOUtils.toString(getClass().getResource("/xml/Confluence4Template.xml"));
             String content = template.replace("@CONTENT@", confluenceMarkup);
             XDOM xdom = parser.parse(new StringReader(content));
             assertThat(xdom, is(notNullValue()));
@@ -101,6 +101,12 @@ public class Confluence4ParserTest {
     @Test
     public void parseLinkFromFile() {
         checkFileConversion("link.xml",
+            "=== My test works in the [[Forked Container>>url:../paxexam/Forked Container]] but not in the Native Container ===");
+    }
+
+    @Test
+    public void parseOptions() {
+        checkFileConversion("ConfigurationOptions.xml",
             "=== My test works in the [[Forked Container>>url:../paxexam/Forked Container]] but not in the Native Container ===");
     }
 
